@@ -157,9 +157,61 @@ function summary(){
  app.innerHTML=html;
 }
 
-window.submitAnswers=async function(){
- // сюда потом вставишь URL Google Apps Script
- // await fetch("GOOGLE_SCRIPT_URL",{method:"POST",body:JSON.stringify(answers)});
+window.submitAnswers = async function() {
+
+  try {
+
+    const response = await fetch(
+      "https://script.google.com/macros/s/AKfycbys-dOosDMSVVOetIx7FNNyDpx2rtp4M3xAJg7i8H19_hsCaGolLsQ5X1XmPNBBLpYu/exec",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(answers)
+      }
+    );
+
+    console.log("Ответ сервера:", await response.text());
+
+  } catch (error) {
+
+    console.error("Ошибка отправки:", error);
+
+    alert(
+      "Не удалось сохранить ответы. Проверь подключение к интернету."
+    );
+
+    return;
+  }
+
+  app.innerHTML = `
+  <section class="screen">
+    <div class="card">
+      <h1>❤️</h1>
+      <h2>Спасибо ❤️</h2>
+      <p>
+      Теперь эта маленькая история сохранена.
+      <br><br>
+      Когда-нибудь мы сможем вернуться к этим ответам
+      и вспомнить этот день.
+      <br><br>
+      А пока... наша история продолжается ✨
+      </p>
+    </div>
+  </section>`;
+
+  setInterval(() => {
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerText = "❤️";
+    h.style.left = Math.random() * 100 + "vw";
+    h.style.top = "-30px";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 5000);
+  }, 300);
+}
+
 
  app.innerHTML=`
  <section class="screen">
