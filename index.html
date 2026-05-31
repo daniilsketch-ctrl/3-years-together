@@ -213,33 +213,6 @@ window.submitAnswers = async function() {
 }
 
 
- app.innerHTML=`
- <section class="screen">
-  <div class="card">
-   <h1>❤️</h1>
-   <h2>Спасибо ❤️</h2>
-   <p>
-   Теперь эта маленькая история сохранена.
-   <br><br>
-   Когда-нибудь мы сможем вернуться к этим ответам
-   и вспомнить этот день.
-   <br><br>
-   А пока... наша история продолжается ✨
-   </p>
-  </div>
- </section>`;
-
- setInterval(()=>{
-  const h=document.createElement("div");
-  h.className="heart";
-  h.innerText="❤️";
-  h.style.left=Math.random()*100+"vw";
-  h.style.top="-30px";
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),5000);
- },300);
-}
-
 startScreen();
 </script>
 </body>
